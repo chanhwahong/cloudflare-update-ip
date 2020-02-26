@@ -33,7 +33,7 @@ if len(sys.argv) == 1:
 
     if new_ip != current_ip:
         ses = requests.session()
-        ses.headers = {'X-Auth-Email': config['email'], 'X-Auth-Key': config['key'], 'Content-Type': 'application/json'}
+        ses.headers = {'Authorization': config['key'], 'Content-Type': 'application/json'}
         records = json.loads(ses.get('https://api.cloudflare.com/client/v4/zones/%s/dns_records' % config['zone']).content.decode('utf8'))['result']
         id_list = []
         for e in records:
